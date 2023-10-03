@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Ball
+  - Floor
+  - Ceiling
+  - Side Wall L
+  - Side Wall R
   layers:
   - Default
   - TransparentFX
