@@ -24,6 +24,6 @@ public class ScoreKeeper : MonoBehaviour
                 playerScore++;
                 playerScoreText.text = playerScore.ToString();
             }
-        }   
+        }
     }
 }
