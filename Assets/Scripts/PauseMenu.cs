@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    public InitialBallSpawner InitialBallSpawner;
     public KeyCode pauseKey = KeyCode.Escape;
     public bool isPaused = false;
 

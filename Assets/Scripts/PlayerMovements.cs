@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovements : MonoBehaviour
 {
     Rigidbody2D playerRB;
-    public float movementSpeed = 5f;    
+    public float movementSpeed = 15f;    
     // Start is called before the first frame update
     void Start()
     {

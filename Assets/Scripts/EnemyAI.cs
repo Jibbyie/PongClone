@@ -6,8 +6,8 @@ public class EnemyAI : MonoBehaviour
 {
     Rigidbody2D enemyRB;
     Transform Ball;
-    public float enemyMovementSpeed = 10f;
-    public float bufferZone = 0.2f;
+    public float enemyMovementSpeed = 15f;
+    public float bufferZone = 0.7f;
     Vector2 destination;
 
     void Start()

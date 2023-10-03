@@ -12,6 +12,7 @@ TagManager:
   - Side Wall R
   - SDL
   - SDR
+  - Obstacle
   layers:
   - Default
   - TransparentFX

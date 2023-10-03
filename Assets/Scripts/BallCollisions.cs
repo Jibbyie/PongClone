@@ -7,7 +7,7 @@ public class BallCollisions : MonoBehaviour
     Rigidbody2D ballRB;
     public GameObject respawnPoint;
     public float respawnDelay = 0.1f;
-    public float ballSpeed = 5f;
+    public float ballSpeed = 17.5f;
 
     public AudioSource pongBlip;
     public AudioSource pongBlipBarrier;

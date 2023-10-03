@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 public class InitialBallSpawner : MonoBehaviour
 {
     Rigidbody2D ballRB;
-    public float spawnSpeed = 10f;
+    public float spawnSpeed = 20f;
     public float timeBeforeBallMoves = 3f;
 
     public AudioSource gameStartSFX;
