@@ -45,7 +45,7 @@ public class PlayerMovements : MonoBehaviour
         }
         else
         {
-            if (Time.timeScale == 0.25f)
+            if (Time.timeScale <= 0.25f)
             {
                 TimeManager.instance.SetTimeScale(1f);
 
@@ -69,6 +69,8 @@ public class PlayerMovements : MonoBehaviour
     {
         if (Input.GetKey(timeSpeedup) && Time.timeScale == 1f)
         {
+            TimeManager.instance.SetTimeScale(speedUpTimeAmount);
+
             AudioSource backgroundMusicAudioSource = FindObjectOfType<OnGoingGameLogic>().GetBackgroundMusicAudioSource();
             AudioSource[] pongSFXArray = FindObjectOfType<BallCollisions>().GetAudioSources();
             AudioSource pongBlip = pongSFXArray[0];
@@ -79,11 +81,10 @@ public class PlayerMovements : MonoBehaviour
                 pongSFXArray[i].pitch = Time.timeScale;
             }
             backgroundMusicAudioSource.pitch = Time.timeScale;
-            TimeManager.instance.SetTimeScale(speedUpTimeAmount);
         }
         else
         {
-            if (Time.timeScale == 2f)
+            if (Time.timeScale >= 2f)
             {
                 TimeManager.instance.SetTimeScale(1f);
 
