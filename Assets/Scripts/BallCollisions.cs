@@ -11,6 +11,7 @@ public class BallCollisions : MonoBehaviour
 
     public AudioSource pongBlip;
     public AudioSource pongBlipBarrier;
+    public AudioSource ballOutOfBounds;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +27,7 @@ public class BallCollisions : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("SDL") || collision.gameObject.CompareTag("SDR"))
         {
+            ballOutOfBounds.Play();
             BallOutOfBounds();
         }
 
