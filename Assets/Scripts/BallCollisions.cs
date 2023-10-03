@@ -8,6 +8,9 @@ public class BallCollisions : MonoBehaviour
     public GameObject respawnPoint;
     public float respawnDelay = 0.1f;
     public float ballSpeed = 5f;
+
+    public AudioSource pongBlip;
+    public AudioSource pongBlipBarrier;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,15 +24,20 @@ public class BallCollisions : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "SDL")
+        if (collision.gameObject.CompareTag("SDL") || collision.gameObject.CompareTag("SDR"))
         {
             BallOutOfBounds();
-            Debug.Log("Left Wall");
         }
-        else if (collision.gameObject.tag == "SDR")
+
+        if (collision.gameObject.CompareTag("Floor") || collision.gameObject.CompareTag("Ceiling"))
         {
-            BallOutOfBounds();
-            Debug.Log("Right Wall");
+            pongBlipBarrier.Play();
+        }
+
+
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy"))
+        {
+            pongBlip.Play();
         }
     }
 

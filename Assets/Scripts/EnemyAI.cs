@@ -8,6 +8,7 @@ public class EnemyAI : MonoBehaviour
     Transform Ball;
     public float enemyMovementSpeed = 10f;
     public float bufferZone = 0.2f;
+    Vector2 destination;
 
     void Start()
     {
@@ -23,11 +24,13 @@ public class EnemyAI : MonoBehaviour
         {
             if (Ball.position.y > transform.position.y)
             {
-                transform.position = new Vector2(transform.position.x, transform.position.y + enemyMovementSpeed * Time.deltaTime);
+                destination = new Vector2(transform.position.x, transform.position.y + enemyMovementSpeed);
+                transform.position = Vector2.Lerp(transform.position, destination, Time.deltaTime);
             }
             else
             {
-                transform.position = new Vector2(transform.position.x, transform.position.y - enemyMovementSpeed * Time.deltaTime);
+                destination = new Vector2(transform.position.x, transform.position.y - enemyMovementSpeed);
+                transform.position = Vector2.Lerp(transform.position, destination, Time.deltaTime);
             }
         }
     }
