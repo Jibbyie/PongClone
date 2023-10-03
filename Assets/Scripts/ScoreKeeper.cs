@@ -8,20 +8,21 @@ public class ScoreKeeper : MonoBehaviour
     public TMP_Text playerScoreText;
     public TMP_Text enemyScoreText;
 
+    public int playerScore = 0;
+    public int enemyScore = 0;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ball"))
         {
             if (collision.gameObject.transform.position.x < 0)
             {
-                int enemyScore = int.Parse(enemyScoreText.text);
-                enemyScore++;
+                enemyScore += 1;
                 enemyScoreText.text = enemyScore.ToString();
             }
             else
             {
-                int playerScore = int.Parse(playerScoreText.text);
-                playerScore++;
+                playerScore += 1;
                 playerScoreText.text = playerScore.ToString();
             }
         }

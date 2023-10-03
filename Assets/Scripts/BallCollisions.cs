@@ -18,11 +18,7 @@ public class BallCollisions : MonoBehaviour
         ballRB = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+ 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("SDL") || collision.gameObject.CompareTag("SDR"))
