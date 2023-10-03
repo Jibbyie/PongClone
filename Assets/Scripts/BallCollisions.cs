@@ -43,8 +43,10 @@ public class BallCollisions : MonoBehaviour
         ballRB.velocity = Vector2.zero;
         yield return new WaitForSeconds(respawnDelay);
         ballRB.transform.position = respawnPoint.transform.position;
-        float x = Random.Range(-5f, 5f);
-        float y = Random.Range(-5f, 5f);
-        ballRB.velocity = new Vector2(x * ballSpeed, y * ballSpeed);
+
+        float ballAngle = Random.Range(0f, 2f * Mathf.PI);
+        ballRB = GetComponent<Rigidbody2D>();
+        Vector2 randomDir = new Vector2(Mathf.Cos(ballAngle), Mathf.Sin(ballAngle));
+        ballRB.velocity = randomDir * ballSpeed;
     }
 }
