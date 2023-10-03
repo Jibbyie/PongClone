@@ -24,17 +24,13 @@ public class PauseMenu : MonoBehaviour
 
     private void Pause()
     {
-        if (Input.GetKeyDown(pauseKey))
+        if (Input.GetKeyDown(pauseKey) && Time.timeScale == 1f)
         {
             isPaused = !isPaused;
 
             if (isPaused)
             {
                 PauseGame();
-            }
-            else
-            {
-                ResumeGame();
             }
         }
        
@@ -47,7 +43,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(true);
     }
 
-    private void ResumeGame()
+    public void ResumeGame()
     {
         TimeManager.instance.SetTimeScale(1f); // Unpause the game
         Cursor.visible = false;
