@@ -9,14 +9,9 @@ public class InitialBallSpawner : MonoBehaviour
     public float spawnSpeed = 20f;
     public float timeBeforeBallMoves = 3f;
 
-    public AudioSource gameStartSFX;
-    public AudioSource backgroundMusic;
-
     // Start is called before the first frame update
     void Start()
     {
-        gameStartSFX.Play();
-        Invoke("PlayMainMenuMusic", 1.5f);
         Invoke("SpawnBall", timeBeforeBallMoves);
     }
 
@@ -29,10 +24,5 @@ public class InitialBallSpawner : MonoBehaviour
         ballRB = GetComponent<Rigidbody2D>();
         Vector2 randomDir = new Vector2(Mathf.Cos(ballAngle), Mathf.Sin(ballAngle));
         ballRB.velocity = randomDir * spawnSpeed;
-    }
-
-    void PlayMainMenuMusic()
-    {
-        backgroundMusic.Play();
     }
 }

@@ -37,6 +37,10 @@ public class BallCollisions : MonoBehaviour
         {
             pongBlip.Play();
         }
+        else
+        {
+            pongBlipBarrier.Play();
+        }
     }
 
     private void BallOutOfBounds()
@@ -57,5 +61,14 @@ public class BallCollisions : MonoBehaviour
         ballRB = GetComponent<Rigidbody2D>();
         Vector2 randomDir = new Vector2(Mathf.Cos(ballAngle), Mathf.Sin(ballAngle));
         ballRB.velocity = randomDir * ballSpeed;
+    }
+
+    public AudioSource[] GetAudioSources()
+    {
+        AudioSource[] audioSources = new AudioSource[3];
+        audioSources[0] = pongBlip;
+        audioSources[1] = pongBlipBarrier;
+        audioSources[2] = ballOutOfBounds;
+        return audioSources;
     }
 }

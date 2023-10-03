@@ -7,16 +7,17 @@ public class GameOverLogic : MonoBehaviour
 {
     public ScoreKeeper scoreReferenceLWall;
     public ScoreKeeper scoreReferenceRWall;
+    public int gameOverScore;
 
     // Update is called once per frame
     void Update()
     {
-        if (scoreReferenceLWall.playerScore == 2 || scoreReferenceRWall.playerScore == 2)
+        if (scoreReferenceLWall.playerScore >= gameOverScore || scoreReferenceRWall.playerScore >= gameOverScore)
         {
             scoreReferenceRWall.playerScoreText.text = scoreReferenceRWall.playerScore.ToString();
             StartCoroutine("LoadGameOver");
         }
-        else if(scoreReferenceLWall.enemyScore == 2 || scoreReferenceRWall.enemyScore == 2)
+        else if(scoreReferenceLWall.enemyScore >= gameOverScore || scoreReferenceRWall.enemyScore >= gameOverScore)
         {
             scoreReferenceLWall.enemyScoreText.text = scoreReferenceLWall.enemyScore.ToString();
             StartCoroutine("LoadGameOver");

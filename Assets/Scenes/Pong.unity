@@ -844,6 +844,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 907334991}
+  - component: {fileID: 907334992}
   m_Layer: 0
   m_Name: Respawn Point
   m_TagString: Untagged
@@ -866,6 +867,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &907334992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907334990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb196ec2eeea14b48ab7700ab9496a61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballPrefab: {fileID: 2073876823}
+  numberOfBalls: 1
+  spawnInterval: 120
 --- !u!114 &1081526845 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4821678426432865765, guid: 9158ac611c73e634f843e0bdc138c5be, type: 3}
@@ -1187,6 +1203,11 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 3871222452346852223, guid: ab7ec434f69c00d469529d3569c35a88, type: 3}
   m_PrefabInstance: {fileID: 7074480054063261177}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1297941017 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8636876587557471711, guid: 22a5e5507a9bcfe4ea23807238b0c92b, type: 3}
+  m_PrefabInstance: {fileID: 8216719789846661972}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1532052891
 GameObject:
   m_ObjectHideFlags: 0
@@ -1461,12 +1482,26 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3547385808203410631, guid: 22a5e5507a9bcfe4ea23807238b0c92b, type: 3}
   m_PrefabInstance: {fileID: 8216719789846661972}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1297941017}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 589927a48dd1f104aae4f10178504e4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1755369190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297941017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f65ca5d3473b29f4781c794e3713307e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameStartSFX: {fileID: 1864089559}
+  backgroundMusic: {fileID: 286507990}
 --- !u!1 &1827671469
 GameObject:
   m_ObjectHideFlags: 0
@@ -2038,6 +2073,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 15
+  timeSlowDown: 114
 --- !u!1 &1940160596
 GameObject:
   m_ObjectHideFlags: 0
@@ -2192,6 +2228,7 @@ GameObject:
   - component: {fileID: 2073876825}
   - component: {fileID: 2073876827}
   - component: {fileID: 2073876828}
+  - component: {fileID: 2073876829}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Ball
@@ -2289,10 +2326,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a9cfdc11ed67b43abf14329a592893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnSpeed: 20
+  spawnSpeed: 25
   timeBeforeBallMoves: 3
-  gameStartSFX: {fileID: 1864089559}
-  backgroundMusic: {fileID: 286507990}
 --- !u!114 &2073876828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2307,10 +2342,62 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   respawnPoint: {fileID: 907334990}
   respawnDelay: 0.1
-  ballSpeed: 17.5
+  ballSpeed: 20
   pongBlip: {fileID: 1222771270}
   pongBlipBarrier: {fileID: 552325005}
   ballOutOfBounds: {fileID: 128835803}
+--- !u!212 &2073876829
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073876823}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 0
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &2078081907
 GameObject:
   m_ObjectHideFlags: 0
@@ -2803,6 +2890,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1577336198}
     - target: {fileID: 7048740612273346836, guid: 22a5e5507a9bcfe4ea23807238b0c92b, type: 3}
+      propertyPath: gameOverScore
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048740612273346836, guid: 22a5e5507a9bcfe4ea23807238b0c92b, type: 3}
       propertyPath: scoreReference
       value: 
       objectReference: {fileID: 582680817}
@@ -2821,7 +2912,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8636876587557471711, guid: 22a5e5507a9bcfe4ea23807238b0c92b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1755369190}
   m_SourcePrefab: {fileID: 100100000, guid: 22a5e5507a9bcfe4ea23807238b0c92b, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
