@@ -7,6 +7,7 @@ public class EnemyAI : MonoBehaviour
     Rigidbody2D enemyRB;
     Transform Ball;
     public float enemyMovementSpeed = 10f;
+    public float bufferZone = 0.2f;
 
     void Start()
     {
@@ -18,13 +19,16 @@ public class EnemyAI : MonoBehaviour
     {
         Ball = GameObject.FindGameObjectWithTag("Ball").transform;
 
-        if (Ball.position.y > transform.position.y)
+        if (Mathf.Abs(Ball.position.y - transform.position.y) > bufferZone)
         {
-            transform.position = new Vector2(transform.position.x, transform.position.y + enemyMovementSpeed * Time.deltaTime);
-        }
-        else
-        {
-            transform.position = new Vector2(transform.position.x, transform.position.y - enemyMovementSpeed * Time.deltaTime);
+            if (Ball.position.y > transform.position.y)
+            {
+                transform.position = new Vector2(transform.position.x, transform.position.y + enemyMovementSpeed * Time.deltaTime);
+            }
+            else
+            {
+                transform.position = new Vector2(transform.position.x, transform.position.y - enemyMovementSpeed * Time.deltaTime);
+            }
         }
     }
 }

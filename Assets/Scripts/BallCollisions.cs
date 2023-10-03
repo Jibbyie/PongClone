@@ -44,7 +44,10 @@ public class BallCollisions : MonoBehaviour
         yield return new WaitForSeconds(respawnDelay);
         ballRB.transform.position = respawnPoint.transform.position;
 
-        float ballAngle = Random.Range(0f, 2f * Mathf.PI);
+        float minAngle = -60f * Mathf.Deg2Rad; // Convert degrees to radians
+        float maxAngle = 60f * Mathf.Deg2Rad;
+
+        float ballAngle = Random.Range(minAngle, maxAngle);
         ballRB = GetComponent<Rigidbody2D>();
         Vector2 randomDir = new Vector2(Mathf.Cos(ballAngle), Mathf.Sin(ballAngle));
         ballRB.velocity = randomDir * ballSpeed;

@@ -320,6 +320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyMovementSpeed: 15
+  bufferZone: 0.6
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,6 +423,7 @@ GameObject:
   m_Component:
   - component: {fileID: 523623969}
   - component: {fileID: 523623970}
+  - component: {fileID: 523623971}
   m_Layer: 0
   m_Name: Side Wall L
   m_TagString: SDL
@@ -491,6 +493,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &523623971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523623968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67f162a95e9faab4bb51a7218409aa52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerScoreText: {fileID: 1081526845}
+  enemyScoreText: {fileID: 1997529649}
 --- !u!1 &664134316
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,6 +517,7 @@ GameObject:
   m_Component:
   - component: {fileID: 664134318}
   - component: {fileID: 664134317}
+  - component: {fileID: 664134319}
   m_Layer: 0
   m_Name: Side Wall R
   m_TagString: SDR
@@ -570,6 +587,20 @@ Transform:
   - {fileID: 1229980707}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &664134319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664134316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67f162a95e9faab4bb51a7218409aa52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerScoreText: {fileID: 1081526845}
+  enemyScoreText: {fileID: 1997529649}
 --- !u!1 &697777306
 GameObject:
   m_ObjectHideFlags: 0
@@ -928,7 +959,7 @@ GameObject:
   - component: {fileID: 1222360096}
   - component: {fileID: 1222360095}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Middle Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1846,7 +1877,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a9cfdc11ed67b43abf14329a592893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnSpeed: 15
+  spawnSpeed: 20
 --- !u!114 &2073876828
 MonoBehaviour:
   m_ObjectHideFlags: 0
