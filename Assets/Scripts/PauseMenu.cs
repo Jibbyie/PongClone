@@ -27,25 +27,38 @@ public class PauseMenu : MonoBehaviour
         if (Input.GetKeyDown(pauseKey))
         {
             isPaused = !isPaused;
-            
+
             if (isPaused)
             {
-                Time.timeScale = 0;
-                Cursor.visible = true;
-                pauseMenu.SetActive(true);
+                PauseGame();
             }
             else
             {
-                Time.timeScale = 1;
-                Cursor.visible = false;
-                pauseMenu.SetActive(false);
+                ResumeGame();
             }
         }
        
+    }
+
+    private void PauseGame()
+    {
+        TimeManager.instance.SetTimeScale(0f); // Pause the game
+        Cursor.visible = true;
+        pauseMenu.SetActive(true);
+    }
+
+    private void ResumeGame()
+    {
+        TimeManager.instance.SetTimeScale(1f); // Unpause the game
+        Cursor.visible = false;
+        pauseMenu.SetActive(false);
+        isPaused = false;
     }
 
     public void QuitGame()
     {
         Application.Quit();
     }
+
+   
 }
