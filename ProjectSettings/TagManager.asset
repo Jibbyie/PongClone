@@ -10,6 +10,8 @@ TagManager:
   - Ceiling
   - Side Wall L
   - Side Wall R
+  - SDL
+  - SDR
   layers:
   - Default
   - TransparentFX
