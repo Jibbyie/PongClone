@@ -5,18 +5,26 @@ using UnityEngine;
 public class PlayerMovements : MonoBehaviour
 {
     Rigidbody2D playerRB;
+
+    bool isPressed = false;
+
     public float movementSpeed = 15f;
     public float slowDownTimeAmount = 0.25f;
-    public float speedUpTimeAmount = 2.5f;
+
+    public float timeToSlowDown_slow = 0.5f;
+    public float timeToSpeedUp_slow = 1f;
+
+
+    private float originalTimeScaleSpeed = 1f;
 
 
     public KeyCode timeSlowDown = KeyCode.R;
-    public KeyCode timeSpeedup = KeyCode.F;
     public AudioSource timeSlowDownSFX;
     // Start is called before the first frame update
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
+        Time.timeScale = originalTimeScaleSpeed;
     }
 
     // Update is called once per frame
@@ -24,83 +32,48 @@ public class PlayerMovements : MonoBehaviour
     {
         playerRB.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * 0, Input.GetAxisRaw("Vertical") * movementSpeed + Time.deltaTime);
         slowDownTime();
-        speedUpTime();
     }
 
     void slowDownTime()
     {
         if (Input.GetKey(timeSlowDown))
         {
-            AudioSource backgroundMusicAudioSource = FindObjectOfType<OnGoingGameLogic>().GetBackgroundMusicAudioSource();
-            AudioSource[] pongSFXArray = FindObjectOfType<BallCollisions>().GetAudioSources();
-            AudioSource pongBlip = pongSFXArray[0];
-            AudioSource pongBlipBarrier = pongSFXArray[1];
-            AudioSource ballOutOfBounds = pongSFXArray[2];
-            for (int i = 0; i < pongSFXArray.Length; i++)
-            {
-                pongSFXArray[i].pitch = Time.timeScale;
-            }
-            backgroundMusicAudioSource.pitch = Time.timeScale;
-            TimeManager.instance.SetTimeScale(slowDownTimeAmount);
+            isPressed = !isPressed;
+            StartCoroutine(LerpTime(slowDownTimeAmount, timeToSlowDown_slow));
         }
-        else
+        if(Input.GetKey(timeSlowDown) && isPressed)
         {
-            if (Time.timeScale <= 0.25f)
+            if (Time.timeScale <= slowDownTimeAmount)
             {
-                TimeManager.instance.SetTimeScale(1f);
-
-                AudioSource backgroundMusicAudioSource = FindObjectOfType<OnGoingGameLogic>().GetBackgroundMusicAudioSource();
-                backgroundMusicAudioSource.pitch = Time.timeScale;
-                AudioSource[] pongSFXArray = FindObjectOfType<BallCollisions>().GetAudioSources();
-                AudioSource pongBlip = pongSFXArray[0];
-                AudioSource pongBlipBarrier = pongSFXArray[1];
-                AudioSource ballOutOfBounds = pongSFXArray[2];
-                for (int i = 0; i < pongSFXArray.Length; i++)
-                {
-                    pongSFXArray[i].pitch = Time.timeScale;
-                }
-                backgroundMusicAudioSource.pitch = Time.timeScale;
+                StartCoroutine(LerpTime(originalTimeScaleSpeed, timeToSpeedUp_slow));
             }
-
         }
     }
 
-    void speedUpTime()
+    void ApplyPitchToSFX(float pitch)
     {
-        if (Input.GetKey(timeSpeedup) && Time.timeScale == 1f)
+        AudioSource backgroundMusicAudioSource = FindObjectOfType<OnGoingGameLogic>().GetBackgroundMusicAudioSource();
+        backgroundMusicAudioSource.pitch = pitch;
+
+        AudioSource[] pongSFXArray = FindObjectOfType<BallCollisions>().GetAudioSources();
+        foreach (var sfx in pongSFXArray)
         {
-            TimeManager.instance.SetTimeScale(speedUpTimeAmount);
-
-            AudioSource backgroundMusicAudioSource = FindObjectOfType<OnGoingGameLogic>().GetBackgroundMusicAudioSource();
-            AudioSource[] pongSFXArray = FindObjectOfType<BallCollisions>().GetAudioSources();
-            AudioSource pongBlip = pongSFXArray[0];
-            AudioSource pongBlipBarrier = pongSFXArray[1];
-            AudioSource ballOutOfBounds = pongSFXArray[2];
-            for (int i = 0; i < pongSFXArray.Length; i++)
-            {
-                pongSFXArray[i].pitch = Time.timeScale;
-            }
-            backgroundMusicAudioSource.pitch = Time.timeScale;
+            sfx.pitch = pitch;
         }
-        else
+    }
+
+    IEnumerator LerpTime(float lerpTimeTo, float timeToTake)
+    {
+        float endTime = Time.time + timeToTake;
+        float startTimeScale = Time.timeScale;
+        float i = 0f;
+        while (Time.time < endTime)
         {
-            if (Time.timeScale >= 2f)
-            {
-                TimeManager.instance.SetTimeScale(1f);
-
-                AudioSource backgroundMusicAudioSource = FindObjectOfType<OnGoingGameLogic>().GetBackgroundMusicAudioSource();
-                backgroundMusicAudioSource.pitch = Time.timeScale;
-                AudioSource[] pongSFXArray = FindObjectOfType<BallCollisions>().GetAudioSources();
-                AudioSource pongBlip = pongSFXArray[0];
-                AudioSource pongBlipBarrier = pongSFXArray[1];
-                AudioSource ballOutOfBounds = pongSFXArray[2];
-                for (int i = 0; i < pongSFXArray.Length; i++)
-                {
-                    pongSFXArray[i].pitch = Time.timeScale;
-                }
-                backgroundMusicAudioSource.pitch = Time.timeScale;
-            }
-
+            i += (1 / timeToTake) * Time.deltaTime;
+            Time.timeScale = Mathf.Lerp(startTimeScale, lerpTimeTo, i);
+            ApplyPitchToSFX(Time.timeScale);
+            yield return null;
         }
+        Time.timeScale = lerpTimeTo;
     }
 }
