@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public KeyCode pauseKey = KeyCode.Escape;
+    public KeyCode pauseKey = KeyCode.C;
     public bool isPaused = false;
 
     public GameObject pauseMenu;
@@ -58,7 +58,7 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        Application.Quit();
+        SceneManager.LoadScene("Play");
     }
 
    

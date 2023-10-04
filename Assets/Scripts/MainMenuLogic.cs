@@ -21,7 +21,7 @@ public class MainMenuLogic : MonoBehaviour
     }
     public void QuitGame()
     {
-        Application.Quit();
+        SceneManager.LoadScene("QuitScreen");
     }
 
     IEnumerator LoadPong()

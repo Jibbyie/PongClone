@@ -22,7 +22,7 @@ public class GameOverScreen : MonoBehaviour
     }
     public void QuitGame()
     {
-        Application.Quit();
+        SceneManager.LoadScene("QuitScreen");
     }
 
     IEnumerator LoadPong()
